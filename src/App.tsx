@@ -4,10 +4,6 @@ import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 
-interface AppContainerProps {
-	className?: string
-}
-
 const signupSchema = yup.object({
 	name: yup
 		.string()
@@ -53,6 +49,10 @@ const signupSchema = yup.object({
 		.required('Подтвердите пароль')
 		.oneOf([yup.ref('password')], 'Пароли не совпадают'),
 })
+
+interface AppContainerProps {
+	className?: string
+}
 
 type FormValues = yup.InferType<typeof signupSchema>
 
