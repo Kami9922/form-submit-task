@@ -1,6 +1,14 @@
 import React from 'react'
+import { UseFormRegister } from 'react-hook-form'
 import styled from 'styled-components'
-
+interface FormValues {
+	name: string
+	nickname: string
+	email: string
+	gender: string
+	password: string
+	confirmPassword: string
+}
 interface InputContainerProps {
 	className?: string
 	size?: string
@@ -12,6 +20,14 @@ interface InputContainerProps {
 	variant?: string
 	asterisk?: string
 	type?: string
+	name?: string
+	value?: string
+	reg?: {
+		name: string
+		onChange: React.ChangeEventHandler<HTMLInputElement>
+		onBlur: React.FocusEventHandler<HTMLInputElement>
+		ref: React.Ref<HTMLInputElement>
+	}
 }
 
 const InputContainer: React.FC<InputContainerProps> = (props) => {
@@ -26,19 +42,23 @@ const InputContainer: React.FC<InputContainerProps> = (props) => {
 		radius,
 		asterisk,
 		type,
+		name,
+		value,
+		reg,
 	} = props
 
 	return (
 		<div className={className}>
-			<div className='input-container'>
-				<label>{label}</label>
-				{description && <span className='description-span'>{description}</span>}
-				<input
-					type={type}
-					placeholder={placeholder || 'write something...'}
-				/>
-				{error && <span className='error-span'>{error}</span>}
-			</div>
+			<label>{label}</label>
+			{description && <span className='description-span'>{description}</span>}
+			<input
+				type={type}
+				placeholder={placeholder || 'write something...'}
+				name={name}
+				value={value}
+				{...reg}
+			/>
+			{error && <span className='error-span'>{error}</span>}
 		</div>
 	)
 }
@@ -46,13 +66,6 @@ const InputContainer: React.FC<InputContainerProps> = (props) => {
 export const Input = styled(InputContainer)`
 	display: flex;
 	flex-direction: column;
-	align-items: center;
-
-	.input-container {
-		display: flex;
-		flex-direction: column;
-		align-items: start;
-	}
 
 	span {
 		font-size: ${({ size }) => {
@@ -88,6 +101,7 @@ export const Input = styled(InputContainer)`
 					return '25px'
 			}
 		}};
+		margin-bottom: 0.5rem;
 	}
 
 	.error-span {
