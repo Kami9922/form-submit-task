@@ -11,6 +11,7 @@ interface InputContainerProps {
 	error?: string
 	variant?: string
 	asterisk?: string
+	type?: string
 }
 
 const InputContainer: React.FC<InputContainerProps> = (props) => {
@@ -21,9 +22,10 @@ const InputContainer: React.FC<InputContainerProps> = (props) => {
 		description,
 		error,
 		variant,
-		size,
+		size = 'md',
 		radius,
 		asterisk,
+		type,
 	} = props
 
 	return (
@@ -31,7 +33,10 @@ const InputContainer: React.FC<InputContainerProps> = (props) => {
 			<div className='input-container'>
 				<label>{label}</label>
 				{description && <span className='description-span'>{description}</span>}
-				<input placeholder={placeholder || 'write something...'} />
+				<input
+					type={type}
+					placeholder={placeholder || 'write something...'}
+				/>
 				{error && <span className='error-span'>{error}</span>}
 			</div>
 		</div>
@@ -42,7 +47,6 @@ export const Input = styled(InputContainer)`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	border-radius: ${({ radius = '0px' }) => radius};
 
 	.input-container {
 		display: flex;
@@ -99,7 +103,7 @@ export const Input = styled(InputContainer)`
 		}`};
 
 	input {
-		border: ${({ variant, error }) => {
+		border: ${({ variant = 'default', error }) => {
 			if (error) {
 				return '1px solid #ce1010'
 			}
@@ -110,13 +114,26 @@ export const Input = styled(InputContainer)`
 				return '0px'
 			}
 		}};
+		border-radius: ${({ radius = 'md' }) => {
+			switch (radius) {
+				case 'xs':
+					return '0px'
+				case 'sm':
+					return '5px'
+				case 'md':
+					return '10px'
+				case 'lg':
+					return '14px'
+				case 'xl':
+					return '20px'
+			}
+		}};
 
 		background-color: ${({ variant }) => {
 			if (variant === 'filled') {
 				return '#e4e4e4'
 			}
 		}};
-
 		padding: 0.5rem;
 		font-size: ${({ size }) => {
 			switch (size) {
