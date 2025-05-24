@@ -15,8 +15,8 @@ Implemented 2 components: Signin и Signup using react-hook-form and yup, and ty
 
   - style variant( default, filled, unstyled)
   - size(xs, sm, md, lg, xl)
-  - radius
+  - radius(xs, sm, md, lg, xl)
   - label
   - description
-  - asterisk's availability
+  - asterisk's availability('true', 'false')
   - error
