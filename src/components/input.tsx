@@ -1,14 +1,6 @@
 import React from 'react'
-import { UseFormRegister } from 'react-hook-form'
 import styled from 'styled-components'
-interface FormValues {
-	name: string
-	nickname: string
-	email: string
-	gender: string
-	password: string
-	confirmPassword: string
-}
+
 interface InputContainerProps {
 	className?: string
 	size?: string
@@ -22,6 +14,7 @@ interface InputContainerProps {
 	type?: string
 	name?: string
 	value?: string
+	checked?: boolean
 	reg?: {
 		name: string
 		onChange: React.ChangeEventHandler<HTMLInputElement>
@@ -37,14 +30,13 @@ const InputContainer: React.FC<InputContainerProps> = (props) => {
 		label,
 		description,
 		error,
+		type,
+		value,
+		reg,
 		variant,
 		size = 'md',
 		radius,
 		asterisk,
-		type,
-		name,
-		value,
-		reg,
 	} = props
 
 	return (
@@ -54,9 +46,9 @@ const InputContainer: React.FC<InputContainerProps> = (props) => {
 			<input
 				type={type}
 				placeholder={placeholder || 'write something...'}
-				name={name}
 				value={value}
 				{...reg}
+				checked
 			/>
 			{error && <span className='error-span'>{error}</span>}
 		</div>
