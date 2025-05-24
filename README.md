@@ -13,8 +13,8 @@ Implemented 2 components: <Signin /> и <Signup /> using react-hook-form and yup
 
 - Also impmlemented <Input /> component with possibility to adjustment it's:
 
-  - style
-  - size
+  - style variant( default, filled, unstyled)
+  - size(xs, sm, md, lg, xl)
   - radius
   - label
   - description
