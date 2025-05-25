@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Input } from './input'
+import { Input } from '../../UI/input'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'

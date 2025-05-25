@@ -1,6 +1,5 @@
 import styled from 'styled-components'
-import { Signup } from './components/sign-up'
-import { Signin } from './components/sign-in'
+import { Signup, Signin } from './components/index'
 
 interface AppContainerProps {
 	className?: string
